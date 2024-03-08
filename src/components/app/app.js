@@ -12,15 +12,27 @@ class App extends Component {
         super(props);
         this.state = {
             data: [                
-                {name: "Вячеслав А.", salary: 6500, increase: false, like: false, id: uuid()},
-                {name: "Ксения К.", salary: 4500, increase: false, like: false, id: uuid()},
-                {name: "Валерий Ш.", salary: 7500, increase: false, like: false, id: uuid()},
-                {name: "Павел Т.", salary: 2500, increase: false, like: false, id: uuid()},
-                {name: "Оксана П..", salary: 1700, increase: false, like: false, id: uuid()}
+                {name: "Вячеслав А.", increase: false, like: false, id: uuid()},
+                {name: "Ксения К.", increase: false, like: false, id: uuid()},
+                {name: "Валерий Ш.", increase: false, like: false, id: uuid()},
+                {name: "Павел Т.", increase: false, like: false, id: uuid()},
+                {name: "Оксана П.", increase: false, like: false, id: uuid()}
             ],
             term: '',
             filter: 'all'
         }
+    }
+
+    componentDidMount(){
+        if(localStorage.getItem('data')){
+            this.setState({
+                data: JSON.parse(localStorage.getItem('data'))
+            })
+        }
+    }
+
+    componentDidUpdate(){
+        localStorage.setItem('data', JSON.stringify(this.state.data));
     }
 
     deleteItem = (id) => {
@@ -30,9 +42,9 @@ class App extends Component {
             }
         })
     }
-    addItem = (nameValue, salaryValue) => {
-        if(nameValue.length > 3 && salaryValue.length > 3){
-            const newItem = [{name: nameValue, salary: salaryValue, increase: false, id: uuid()}]
+    addItem = (nameValue, like) => {
+        if(nameValue.length > 3){
+            const newItem = [{name: nameValue, increase: false, like: like, id: uuid()}]
             this.setState(({data}) => {
                 return{
                     data: data.concat(newItem)
@@ -43,7 +55,7 @@ class App extends Component {
     onToggleProp = (id, prop) => {
        this.setState(({data}) => ({
             data: data.map(item => {
-                if(item.id == id){
+                if(item.id === id){
                     return {...item, [prop]: !item[prop]}
                 }
                 return item;
@@ -65,8 +77,8 @@ class App extends Component {
         switch (filter){
             case 'like':
                 return items.filter(item => item.like)
-            case 'moreThen1000':
-                return items.filter(item => item.salary > 1000)
+            case 'increase':
+                return items.filter(item => item.increase)
             default:
                 return items
         }

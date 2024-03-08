@@ -10,6 +10,7 @@
 .list-group-item span {
     line-height: 35px;
     font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
     min-width: 550px;
 }
@@ -31,14 +32,14 @@
 }
 
 .list-group-item .btn-cookie {
-    color: #e09f3e;
+    color: #14a800;
 }
 
 .list-group-item .btn-trash {
     color: #e5383b;
 }
 
-.list-group-item .fa-info-circle {
+.list-group-item .fa-check {
     width: 35px;
     height: 35px;
     text-align: center;
@@ -50,13 +51,13 @@
     opacity: 0;
 }
 
-.list-group-item.like .fa-info-circle {
+.list-group-item.like .fa-check {
     opacity: 1;
     transform: translateX(0px);
 }
 
 .list-group-item.increase .list-group-item-label, .list-group-item.increase .list-group-item-input {
-    color: #e09f3e;
+    color: #14a800;
 }
   
 .list-group-item.increase .btn-star {

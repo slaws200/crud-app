@@ -2,16 +2,13 @@ import { Component } from 'react';
 import './app-filter.css';
 
 class AppFilter extends Component {
-    constructor(props){
-        super(props)
-    }
-    
+   
     render(){
         const {onSortByFilter} = this.props;
         const btnData = [
             {name: 'all', label: 'Все сотрудники'},
-            {name: 'like', label: 'Сотрудники на повышение'},
-            {name: 'moreThen1000', label: 'З/П больше 1000$'}
+            {name: 'like', label: 'Документы подписаны'},
+            {name: 'increase', label: 'Открыта ЭЦП'}
         ];
 
         const btns = btnData.map(({name, label}) => {

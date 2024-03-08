@@ -7,7 +7,7 @@ class EmployeesAddForm extends Component{
         super(props);
         this.state = {
             name: '',
-            salary: ''
+            like: false
         }
     }
     onValueChange = (e) => {
@@ -16,9 +16,15 @@ class EmployeesAddForm extends Component{
         })
     }    
 
+    onCheck = (e) => {
+        this.setState({
+            like: e.target.checked
+        })
+    }
+
     render(){
         const {onAdd} = this.props;
-        const {name, salary} = this.state;
+        const {name, like} = this.state;
         return(
             <div className="app-add-form">
                 <h3>Добавьте нового сотрудника</h3>
@@ -30,21 +36,20 @@ class EmployeesAddForm extends Component{
                         name="name" 
                         value={name}
                         onChange={this.onValueChange}/>
-                    <input type="number"
-                        className="form-control new-post-label"
-                        placeholder="З/П в $?" 
-                        name="salary"
-                        value={salary} 
-                        onChange={this.onValueChange}/>
+                    <div className="form-check form-switch">                    
+                    <label className="form-check-label" htmlFor="flexSwitchCheckDefault">&#8592;  Документы подписаны?</label>
+                    <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" 
+                        onChange={this.onCheck} checked={like}/>
+                    </div>
     
                     <button type="submit"
                             className="btn btn-outline-light" 
                             onClick={(e) => {
                                 e.preventDefault();
-                                onAdd(name, salary)
+                                onAdd(name, like)
                                 this.setState({
                                     name: '',
-                                    salary: ''
+                                    like: false
                                 })
                             }}>
                             Добавить

@@ -12,6 +12,10 @@
 }
 
 .add-form input {
-    width: 350px;
+    max-width: 350px;
     margin-right: 20px;
+}
+
+label {
+    margin: auto 50px auto 0px;
 }
